@@ -1,1 +1,1 @@
-# Front-end-Projects
+# Stone-Paper-Scissors Game
