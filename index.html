@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <h1 class="text">Stone paper scissors Game</h1>
+    <button onclick="
+    let computer_choice=computerChoice();
+    let result_=result(computer_choice,'stone');
+     display('stone',computer_choice,result_);"  id="stone" class="images"> 
+    </button>
+
+
+    <button class="images" id="paper" onclick=" 
+    computer_choice=computerChoice();
+    result_=result(computer_choice,'paper');
+    display('Paper', computer_choice,result_);"> 
+    </button>
+
+
+    <button class="images" id="scissors" onclick="
+    computer_choice=computerChoice();
+    result_=result(computer_choice,'scissors');
+    display('scissors',computer_choice,result_);"> </button> 
+    </button>
+
+
+    <h3  class="text"id="user_move"></h3>
+    <h3  class="text" id="computer_move"></h3>
+    <h3 class="text" id="result"></h3>
+    <h3 class="text" id="score" ></h3>
+
+
+    <button id="reset" onclick=" localStorage.clear();
+    reset()"><span class="material-symbols-outlined" >
+restart_alt
+</span></button>
+
+   <script>
+    let strscore = localStorage.getItem('Score');
+    let score;
+    function resetscore(str){
+           score=str ? JSON.parse(str):{
+            win:0,
+            loss:0,
+            tie:0,
+
+         };    
+        display_i();
+    }
+    resetscore(strscore);
+
+    function display_i(){
+        document.querySelector('#score').innerText=`Score:
+        Won:${score.win} 
+        Lost:${score.loss} 
+        Tie:${score.tie}`;
+        return;
+}
+   
+      
+    function reset(){
+        score.win=0;
+        score.loss=0;
+        score.tie=0;
+        document.querySelector('#user_move').innerText="";
+        document.querySelector('#computer_move').innerText="";
+        document.querySelector('#result').innerText="";
+        document.querySelector('#score').innerText=`Score:   
+         Won:0
+         Lost:0
+         Tie:0`;
+         return;
+    }
+    function computerChoice(){
+        let x=Math.random()*3;
+        if(x>0 && x<=1){
+        return 'stone';
+    }
+    else if(x>1 && x<=2){
+        return 'paper';
+    }
+    else{
+        return 'scissors';
+    }
+
+        }
+   function result(computer_choice,user_choice){ 
+    if(computer_choice==='stone'){
+        if (user_choice==='paper'){
+            score.win++;
+            return 'You won';   
+        }
+        else if(user_choice==='scissors'){
+            score.loss++;
+            return 'Computer won';
+        }
+        else{
+            score.tie++;
+            return "It's a tie";
+        
+        }
+    }
+    else if(computer_choice==='paper'){
+           if (user_choice==='paper'){
+           score.tie++; 
+            return "It's a tie"; 
+             
+        }
+        else if(user_choice==='scissors'){
+            score.win++;
+            return 'You won';
+           
+        }
+        else{
+            score.loss++;
+            return "Computer won";
+            
+        }
+    } 
+    else{
+        if (user_choice==='paper'){
+            score.loss++;
+            return 'Computer won';   
+        }
+        else if(user_choice==='scissors'){
+            score.tie++;
+            return "It's a tie";
+        }
+        else{
+            score.win++;
+            return "You won";
+        }
+    }
+   }    
+   function display(userchoice,computer_choice,result){
+    
+   document.querySelector('#user_move').innerText=`Your choice is ${userchoice}`;
+   document.querySelector('#computer_move').innerText=`Computer choice is ${ computer_choice}`;
+   document.querySelector('#result').innerText=result;
+   document.querySelector('#score').innerText=`Score:   
+   Won:${score.win} 
+   Lost:${score.loss} 
+   Tie:${score.tie}`;
+   localStorage.setItem('score',JSON.stringify(score));
+   return;
+   
+
+   } 
+   </script>
+    
+</body>
+</html>

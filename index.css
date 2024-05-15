@@ -1,0 +1,57 @@
+body{
+    text-align:center;
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+#stone{
+    background-image: url('stone.png');
+    
+}
+#paper{
+    background-image: url('paper.png');
+   
+}
+#scissors{
+    background-image: url('scissors.webp');
+}
+   
+.images{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height:200px;
+    width:200px;
+    border:2px solid black;
+    border-radius: 100px;
+    cursor: pointer;
+    rotate: -60deg;
+}
+
+.images:hover{
+    background-color: rgb(101, 119, 223);
+
+}
+.images:active{
+    background-color: rgb(51, 73, 202);
+
+}
+#score{
+    position:absolute;
+    top:20px;
+    right:50px;
+
+    
+}
+.text{
+    font-size: 30px;
+
+}
+#reset{
+    background-color: rgb(202, 167, 135);
+    border:2px solid black;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+    }
